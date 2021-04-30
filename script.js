@@ -15,6 +15,30 @@ function generatePassword() {
     numeric = confirm("Would you like your password to contain numeric characters?");
     special = confirm("Would you like your password to contain special characters?");
   }
+
+  var ucArr = ['QWERTYUIOPASDFGHJKLZXCVBNM'.split('')];
+  var lcArr = ['qwertyuiopasdfghjklzxcvbnm'.split('')];
+  var numArr = ['1234567890'.split('')];
+  var specArr = [',<.>/?;:{}`~!@#$%^&*()-_=+'.split('')];
+  var ucRandom = '';
+  var lcRandom = '';
+  var numRandom = '';
+  var specRandom = '';
+
+  if (upperCase) {
+    ucRandom = ucArr[Math.floor(Math.random() * ucArr.length)];
+  }
+  if (lowerCase) {
+    lcRandom = lcArr[Math.floor(Math.random() * lcArr.length)];
+  }
+  if (numeric) {
+    numRandom = numArr[Math.floor(Math.random() * numArr.length)];
+  }
+  if (special) {
+    specRandom = specArr[Math.floor(Math.random() * specArr.length)];
+  }
+
+  console.log(specRandom, numRandom, lcRandom, ucRandom);
 }
 
 // Get references to the #generate element

@@ -16,29 +16,44 @@ function generatePassword() {
     special = confirm("Would you like your password to contain special characters?");
   }
 
-  var ucArr = ['QWERTYUIOPASDFGHJKLZXCVBNM'.split('')];
-  var lcArr = ['qwertyuiopasdfghjklzxcvbnm'.split('')];
-  var numArr = ['1234567890'.split('')];
-  var specArr = [',<.>/?;:{}`~!@#$%^&*()-_=+'.split('')];
-  var ucRandom = '';
-  var lcRandom = '';
-  var numRandom = '';
-  var specRandom = '';
+  var result = [];
+ 
+  var ucArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var lcArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var numArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  var specArr = ["+", "-", "&", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "@", "#", "$", "%"];
+ 
+  
+  function pickChar() {
+    var allowedChar = [];
+    var ucRandom = ucArr[Math.floor(Math.random() * ucArr.length)];
+    var lcRandom = lcArr[Math.floor(Math.random() * lcArr.length)];
+    var numRandom = numArr[Math.floor(Math.random() * numArr.length)];
+    var specRandom = specArr[Math.floor(Math.random() * specArr.length)];
+    
+    
+    if (upperCase) {
+      allowedChar.push(ucRandom);
+    }
+    if (lowerCase) {
+      allowedChar.push(lcRandom);
+    }
+    if (numeric) {
+      allowedChar.push(numRandom);
+    }
+    if (special) {
+      allowedChar.push(specRandom);
+    }
+    var randChar = allowedChar[Math.floor(Math.random() * allowedChar.length)];
 
-  if (upperCase) {
-    ucRandom = ucArr[Math.floor(Math.random() * ucArr.length)];
+    return randChar;
   }
-  if (lowerCase) {
-    lcRandom = lcArr[Math.floor(Math.random() * lcArr.length)];
-  }
-  if (numeric) {
-    numRandom = numArr[Math.floor(Math.random() * numArr.length)];
-  }
-  if (special) {
-    specRandom = specArr[Math.floor(Math.random() * specArr.length)];
+    
+  for (var i = 0; i < length; i++) {
+    result.push(pickChar());
   }
 
-  console.log(specRandom, numRandom, lcRandom, ucRandom);
+  return result.join('');
 }
 
 // Get references to the #generate element
